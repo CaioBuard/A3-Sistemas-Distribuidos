@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,60 +19,60 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.unicuritiba.listatelefonica.models.Telefone;
 import br.com.unicuritiba.listatelefonica.repositories.TelefoneRepository;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class ListaTelefonicaApiController {
-	
 	@Autowired
 	private TelefoneRepository repositorio;
 	
-	@GetMapping("/listaTelefones")
+	@GetMapping("/telefones")
 	public ResponseEntity<List<Telefone>> getTelefones() 
 	{
 		List<Telefone> telefones = repositorio.findAll();
 		return ResponseEntity.ok (telefones);
 	} 
 	
-   @PostMapping("/insereTelefone")
-    public Telefone Post(@RequestBody Telefone telefone)
+	@GetMapping("/telefone/{id}")
+	public ResponseEntity<Optional<Telefone>> getTelefone(@PathVariable ("id") long id) 
+	{
+		Optional<Telefone> telefone = repositorio.findById(id);
+		return ResponseEntity.ok (telefone);
+	} 
+	
+    @PostMapping("/telefone")
+    public Telefone postTelefone(@RequestBody Telefone telefone)
     {
         return repositorio.save(telefone);
     }
    
-	@DeleteMapping("/remover/{id}")
-	public ResponseEntity<Long> Delete(@PathVariable ("id") long id) 
+	@DeleteMapping("/telefone/{id}")
+	public ResponseEntity<Long> deleteTelefone(@PathVariable ("id") long id) 
 	{
 		repositorio.deleteById(id);	
 		return ResponseEntity.ok (id);
 	}
 	
-	 @PutMapping("/atualizar/{id}")
-	 public ResponseEntity<Telefone> Put(@PathVariable("id") long id, @RequestBody Telefone telefoneAtualizado) 
+		
+	 @PutMapping("/telefone/{id}")
+	 public ResponseEntity<Telefone> putTelefone(@PathVariable("id") long id, @RequestBody Telefone telefoneAtualizado) 
 	 {
-		 
         Optional<Telefone> telefoneRepo = repositorio.findById(id);
         
-        
         Telefone telefone = telefoneRepo.get();
-        String nomeAtualizado = telefoneAtualizado.getNome();
-        String sobrenomeAtualizado = telefoneAtualizado.getSobrenome();
         int numeroAtualizado = telefoneAtualizado.getNumero();
     	int dddAtualizado = telefoneAtualizado.getDdd();
-    	
-    	
-    	if (ValidaAlteracao(nomeAtualizado)) {
-    		telefone.setNome(nomeAtualizado);
-    	};
-    	
-    	if (ValidaAlteracao(sobrenomeAtualizado)) {
-    		telefone.setSobrenome(sobrenomeAtualizado);
-    	};
+    	int idPessoaAtualizaco = telefoneAtualizado.getIdPessoa();
     	
     	if (ValidaAlteracao(String.valueOf(numeroAtualizado))) {
     		telefone.setNumero(numeroAtualizado);
     	};
     	
-    	if (ValidaAlteracao(String.valueOf(numeroAtualizado))) {
+    	if (ValidaAlteracao(String.valueOf(dddAtualizado))) {
     		telefone.setDdd(dddAtualizado);
+    	};
+    	
+    	if (ValidaAlteracao(String.valueOf(idPessoaAtualizaco))) {
+    		telefone.setDdd(idPessoaAtualizaco);
     	};
     	
     	repositorio.save(telefone);

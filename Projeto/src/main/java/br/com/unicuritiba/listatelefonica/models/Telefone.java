@@ -1,38 +1,24 @@
 package br.com.unicuritiba.listatelefonica.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Telefone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;	
-	private String nome;
-	private String sobrenome;
+	private long id;
 	private int ddd;
 	private int numero;
-	
+	private int idPessoa;
 	
 	public long getId() {
 		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getSobrenome() {
-		return sobrenome;
-	}
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
 	}
 	public int getDdd() {
 		return ddd;
@@ -46,7 +32,10 @@ public class Telefone {
 	public void setNumero(int numero) {
 		this.numero = numero;
 	}
-	
-	
-	
+	public int getIdPessoa() {
+		return idPessoa;
+	}
+	public void setIdPessoa(int idPessoa) {
+		this.idPessoa = idPessoa;
+	}
 }
