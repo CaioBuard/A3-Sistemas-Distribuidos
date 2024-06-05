@@ -72,7 +72,7 @@ public class ListaTelefonicaApiController {
     	};
     	
     	if (ValidaAlteracao(String.valueOf(idPessoaAtualizaco))) {
-    		telefone.setDdd(idPessoaAtualizaco);
+    		telefone.setIdPessoa(idPessoaAtualizaco);
     	};
     	
     	repositorio.save(telefone);
