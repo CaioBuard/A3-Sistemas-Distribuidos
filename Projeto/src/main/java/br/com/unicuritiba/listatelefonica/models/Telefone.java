@@ -13,23 +13,23 @@ public class Telefone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-	private int ddd;
-	private int numero;
+	private String ddd;
+	private String numero;
 	private int idPessoa;
 	
 	public long getId() {
 		return id;
 	}
-	public int getDdd() {
+	public String getDdd() {
 		return ddd;
 	}
-	public void setDdd(int ddd) {
+	public void setDdd(String ddd) {
 		this.ddd = ddd;
 	}
-	public int getNumero() {
+	public String getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 	public int getIdPessoa() {

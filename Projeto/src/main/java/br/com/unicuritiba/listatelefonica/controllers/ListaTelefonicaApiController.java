@@ -59,8 +59,8 @@ public class ListaTelefonicaApiController {
         Optional<Telefone> telefoneRepo = repositorio.findById(id);
         
         Telefone telefone = telefoneRepo.get();
-        int numeroAtualizado = telefoneAtualizado.getNumero();
-    	int dddAtualizado = telefoneAtualizado.getDdd();
+        String numeroAtualizado = telefoneAtualizado.getNumero();
+    	String dddAtualizado = telefoneAtualizado.getDdd();
     	int idPessoaAtualizaco = telefoneAtualizado.getIdPessoa();
     	
     	if (ValidaAlteracao(String.valueOf(numeroAtualizado))) {

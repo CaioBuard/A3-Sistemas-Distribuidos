@@ -13,19 +13,12 @@ public class Pessoa {
 	
 	private String nome;
 	private String cpfOuCnpj;
-	private float taxaTelefonePagamento;
 	
 	public String getCpfOuCnpj() {
 		return cpfOuCnpj;
 	}
 	public void setCpfOuCnpj(String cpfOuCnpj) {
 		this.cpfOuCnpj = cpfOuCnpj;
-	}
-	public float getTaxaTelefonePagamento() {
-		return taxaTelefonePagamento;
-	}
-	public void setTaxaTelefonePagamento(float taxaTelefonePagamento) {
-		this.taxaTelefonePagamento = taxaTelefonePagamento;
 	}
 	public long getId() {
 		return id;
